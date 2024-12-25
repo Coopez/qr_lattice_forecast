@@ -1,4 +1,3 @@
-# coding=utf-8
 # Copyright 2024 The Google Research Authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,3 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+#!/bin/bash
+set -e
+set -x
+
+python3 -m venv .
+source ./bin/activate
+
+pip install -r quantile_regression/requirements.txt
+python -m quantile_regression.simulation_experiments \
+  --simulation='EXPONENTIAL' \
+  --quantile_type='BATCH_RANDOM' \
+  --train_steps=10 \
+  --train_size=50
